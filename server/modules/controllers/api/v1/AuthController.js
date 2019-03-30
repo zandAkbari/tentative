@@ -31,7 +31,7 @@ module.exports = new class CourseController extends Controller {
 	    User.getUser(req.body.userId).then((data)=> {
 
 		    if(data.length==0)
-			    return res.status(422).json({
+			    return res.status(200).json({
 				    data : 'not valid',
 				    success : false
 			    });
@@ -39,7 +39,7 @@ module.exports = new class CourseController extends Controller {
 		    bcrypt.compare(req.body.password , data[0].password , (err , status) => {
 
 			    if(! status)
-				    return res.status(422).json({
+				    return res.status(200).json({
 					    success : false,
 					    data : 'پسورد وارد شده صحیح نمی باشد'
 				    })

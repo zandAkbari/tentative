@@ -51,8 +51,15 @@ export class AppComponent  {
       this.api.login(values)
           .subscribe(res => {
               console.log(res);
+             if(res["success"]){
+                 this.error=false
+                 this.submitted = true;
+             }else{
+                 this.error = true;
+             }
+
           })
-    this.submitted = true;
+
   }
     profile() {
         console.log(this.profileForm);

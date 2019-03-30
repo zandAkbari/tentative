@@ -40,13 +40,20 @@ var AppComponent = (function () {
         this.errorE = false;
     }
     AppComponent.prototype.login = function (values) {
+        var _this = this;
         console.log(values);
         console.log(this.loginForm.value);
         this.api.login(values)
             .subscribe(function (res) {
             console.log(res);
+            if (res["success"]) {
+                _this.error = false;
+                _this.submitted = true;
+            }
+            else {
+                _this.error = true;
+            }
         });
-        this.submitted = true;
     };
     AppComponent.prototype.profile = function () {
         console.log(this.profileForm);

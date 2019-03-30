@@ -16,8 +16,8 @@ export class ApiService {
       console.log("dataaaaaaa",data)
         let headers = new Headers();
         let body = new URLSearchParams();
-        body.set('userId','userId1');
-        body.set('pass','pass1');
+        body.set('userId',data["userId"]);
+        body.set('password',data["pass"]);
         this.createAuthorizationHeader(headers);
         return this.http.post('http://localhost:8000/api/v1/login' , body, {
             headers: headers
