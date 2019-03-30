@@ -2,7 +2,7 @@
   <h2>Login : </h2>
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">UserName</label>
       <input type="text" id="name" placeholder="enter your name ..." name="userId" class="form-control" [formControl]="userId">
       <div [hidden]="userId.valid || userId.untouched">
         <div class="color-red"  [hidden]="!userId.hasError('required')">
