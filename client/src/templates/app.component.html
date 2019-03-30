@@ -3,24 +3,24 @@
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" id="name" placeholder="enter your name ..." name="name" class="form-control" [formControl]="name">
-      <div [hidden]="name.valid || name.untouched">
-        <div class="color-red"  [hidden]="!name.hasError('required')">
+      <input type="text" id="name" placeholder="enter your name ..." name="userId" class="form-control" [formControl]="userId">
+      <div [hidden]="userId.valid || userId.untouched">
+        <div class="color-red"  [hidden]="!userId.hasError('required')">
           The Name is Required
         </div>
-        <div class="color-red"  [hidden]="!name.hasError('minlength')">
+        <div class="color-red"  [hidden]="!userId.hasError('minlength')">
           The Name is min
         </div>
       </div>
     </div>
     <div class="form-group">
       <label for="password">password</label>
-      <input type="password" id="password" placeholder="enter your password ..." name="password" class="form-control" [formControl]="password">
-      <div [hidden]="password.valid || password.untouched">
-        <div class="color-red"  [hidden]="!password.hasError('required')">
+      <input type="password" id="password" placeholder="enter your password ..." name="pass" class="form-control" [formControl]="pass">
+      <div [hidden]="pass.valid || pass.untouched">
+        <div class="color-red"  [hidden]="!pass.hasError('required')">
           The password is Required
         </div>
-        <div class="color-red"  [hidden]="!password.hasError('minlength')">
+        <div class="color-red"  [hidden]="!pass.hasError('minlength')">
           The password is min
         </div>
       </div>
@@ -35,7 +35,7 @@
 
 <div class="container" [hidden]="!submitted">
   <div [hidden]="editing">
-  <h4>name : {{ loginForm.get('name').value }}</h4>
+  <h4>name : {{ loginForm.get('userId').value }}</h4>
 
 
   <button (click)="submitted = false">logOut</button>

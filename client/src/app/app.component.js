@@ -15,11 +15,11 @@ var AppComponent = (function () {
     function AppComponent(builder, api) {
         this.builder = builder;
         this.api = api;
-        this.name = new forms_1.FormControl('', [
+        this.userId = new forms_1.FormControl('', [
             forms_1.Validators.required,
             forms_1.Validators.minLength(2)
         ]);
-        this.password = new forms_1.FormControl('', [
+        this.pass = new forms_1.FormControl('', [
             forms_1.Validators.required,
             forms_1.Validators.minLength(2)
         ]);
@@ -28,8 +28,8 @@ var AppComponent = (function () {
             forms_1.Validators.minLength(2)
         ]);
         this.loginForm = this.builder.group({
-            name: this.name,
-            password: this.password,
+            userId: this.userId,
+            pass: this.pass,
         });
         this.profileForm = this.builder.group({
             nameE: this.nameE,

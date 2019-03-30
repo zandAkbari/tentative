@@ -13,12 +13,12 @@ export class AppComponent  {
     editing:boolean;
     errorE:boolean;
 
-  name = new FormControl('', [
+  userId = new FormControl('', [
     Validators.required,
     Validators.minLength(2)
   ]);
 
-    password = new FormControl('' , [
+    pass = new FormControl('' , [
     Validators.required,
         Validators.minLength(2)
   ]);
@@ -27,8 +27,8 @@ export class AppComponent  {
         Validators.minLength(2)
     ]);
     loginForm: FormGroup = this.builder.group({
-    name : this.name,
-      password : this.password,
+    userId : this.userId,
+      pass : this.pass,
 
   });
     profileForm: FormGroup = this.builder.group({

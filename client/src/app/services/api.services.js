@@ -15,8 +15,19 @@ var ApiService = (function () {
     function ApiService(http) {
         this.http = http;
     }
+    ApiService.prototype.createAuthorizationHeader = function (headers) {
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    };
     ApiService.prototype.login = function (data) {
-        return this.http.post('http://localhost:8000/api/v1/login', data)
+        console.log("dataaaaaaa", data);
+        var headers = new http_1.Headers();
+        var body = new http_1.URLSearchParams();
+        body.set('userId', 'userId1');
+        body.set('pass', 'pass1');
+        this.createAuthorizationHeader(headers);
+        return this.http.post('http://localhost:8000/api/v1/login', body, {
+            headers: headers
+        })
             .map(function (res) { return res.json(); });
     };
     return ApiService;
