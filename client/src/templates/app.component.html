@@ -1,0 +1,69 @@
+<div class="container" [hidden]="submitted">
+  <h2>Login : </h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="enter your name ..." name="name" class="form-control" [formControl]="name">
+      <div [hidden]="name.valid || name.untouched">
+        <div class="color-red"  [hidden]="!name.hasError('required')">
+          The Name is Required
+        </div>
+        <div class="color-red"  [hidden]="!name.hasError('minlength')">
+          The Name is min
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input type="password" id="password" placeholder="enter your password ..." name="password" class="form-control" [formControl]="password">
+      <div [hidden]="password.valid || password.untouched">
+        <div class="color-red"  [hidden]="!password.hasError('required')">
+          The password is Required
+        </div>
+        <div class="color-red"  [hidden]="!password.hasError('minlength')">
+          The password is min
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="color-red mb-2"  [hidden]="!error"> data is incorrect</div>
+      <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </form>
+</div>
+
+<div class="container" [hidden]="!submitted">
+  <div [hidden]="editing">
+  <h4>name : {{ loginForm.get('name').value }}</h4>
+
+
+  <button (click)="submitted = false">logOut</button>
+  <button (click)="editing = true">edit</button>
+  </div>
+  <div [hidden]="!editing">
+    <h2>edit : </h2>
+    <form [formGroup]="profileForm" (ngSubmit)="profile()">
+      <div class="form-group">
+        <label for="nameE">Name</label>
+        <input type="text" id="nameE" placeholder="enter your name ..." name="nameE" class="form-control" [formControl]="nameE">
+        <div [hidden]="nameE.valid || nameE.untouched">
+          <div class="color-red"  [hidden]="!nameE.hasError('required')">
+            The Name is Required
+          </div>
+          <div class="color-red"  [hidden]="!nameE.hasError('minlength')">
+            The Name is min
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="color-red mb-2"  [hidden]="!errorE"> data is incorrect</div>
+        <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid">ok</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
