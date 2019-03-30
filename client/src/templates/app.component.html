@@ -35,7 +35,7 @@
 
 <div class="container" [hidden]="!submitted">
   <div [hidden]="editing">
-  <h4>name : {{ userId.value }}</h4>
+  <h4>name : {{ name}}</h4>
 
 
   <button (click)="submitted = false">logOut</button>
@@ -46,7 +46,7 @@
     <form [formGroup]="profileForm" (ngSubmit)="profile(profileForm.value)">
       <div class="form-group">
         <label for="nameE">Name</label>
-        <input type="text" id="nameE" placeholder="enter your name ..." name="nameE" class="form-control" [formControl]="nameE">
+        <input type="text" id="nameE" value="{{name}}" placeholder="enter your name ..." name="nameE" class="form-control" [formControl]="nameE">
         <div [hidden]="nameE.valid || nameE.untouched">
           <div class="color-red"  [hidden]="!nameE.hasError('required')">
             The Name is Required

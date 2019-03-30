@@ -38,4 +38,17 @@ export class ApiService {
             .map(res => res.json())
 
     }
+    user(token:any) : Observable<boolean> {
+
+        let headers = new Headers();
+        let body = new URLSearchParams();
+
+        body.set('token',token);
+        this.createAuthorizationHeader(headers);
+        return this.http.post('http://localhost:8000/api/v1/user' , body, {
+            headers: headers
+        })
+            .map(res => res.json())
+
+    }
 }

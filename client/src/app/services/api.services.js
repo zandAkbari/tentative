@@ -41,6 +41,16 @@ var ApiService = (function () {
         })
             .map(function (res) { return res.json(); });
     };
+    ApiService.prototype.user = function (token) {
+        var headers = new http_1.Headers();
+        var body = new http_1.URLSearchParams();
+        body.set('token', token);
+        this.createAuthorizationHeader(headers);
+        return this.http.post('http://localhost:8000/api/v1/user', body, {
+            headers: headers
+        })
+            .map(function (res) { return res.json(); });
+    };
     return ApiService;
 }());
 ApiService = __decorate([

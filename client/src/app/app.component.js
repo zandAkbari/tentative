@@ -38,6 +38,7 @@ var AppComponent = (function () {
         this.error = false;
         this.editing = false;
         this.errorE = false;
+        this.name = "";
     }
     AppComponent.prototype.login = function (values) {
         var _this = this;
@@ -49,8 +50,17 @@ var AppComponent = (function () {
             if (res["success"]) {
                 console.log("kkkkk", _this.userId);
                 _this.token = res["data"]["token"];
-                _this.error = false;
-                _this.submitted = true;
+                _this.api.user(_this.token)
+                    .subscribe(function (res) {
+                    if (res["success"]) {
+                        console.log("ddddd", res["data"]["name"]);
+                        _this.name = res["data"]["name"];
+                        _this.error = false;
+                        _this.submitted = true;
+                    }
+                    else {
+                    }
+                });
             }
             else {
                 _this.error = true;
@@ -64,7 +74,7 @@ var AppComponent = (function () {
         this.api.edite(this.profileForm.value["nameE"], this.token)
             .subscribe(function (res) {
             if (res["success"]) {
-                _this.userId = _this.nameE;
+                _this.name = _this.nameE.value;
                 console.log(res);
                 _this.editing = false;
                 _this.errorE = false;

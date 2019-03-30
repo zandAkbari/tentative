@@ -13,6 +13,7 @@ export class AppComponent  {
     editing:boolean;
     errorE:boolean;
     token:string;
+    name:string;
 
   userId = new FormControl('', [
     Validators.required,
@@ -43,6 +44,7 @@ export class AppComponent  {
       this.error = false;
       this.editing = false;
       this.errorE = false;
+      this.name=""
 
   }
 
@@ -55,8 +57,20 @@ export class AppComponent  {
              if(res["success"]){
                  console.log("kkkkk",this.userId)
                  this.token=res["data"]["token"]
-                 this.error=false
-                 this.submitted = true;
+                 this.api.user(this.token)
+                     .subscribe(res => {
+                         if(res["success"]){
+console.log("ddddd",res["data"]["name"])
+                             this.name=res["data"]["name"];
+                             this.error=false
+                             this.submitted = true;
+
+                         }else {
+
+                         }
+
+                     })
+
              }else{
                  this.error = true;
              }
@@ -70,7 +84,8 @@ export class AppComponent  {
         this.api.edite(this.profileForm.value["nameE"],this.token)
             .subscribe(res => {
                 if(res["success"]){
-                    this.userId =this.nameE;
+
+                    this.name=this.nameE.value;
                     console.log(res);
                     this.editing = false;
                     this.errorE = false;
