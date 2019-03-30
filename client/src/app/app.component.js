@@ -47,6 +47,8 @@ var AppComponent = (function () {
             .subscribe(function (res) {
             console.log(res);
             if (res["success"]) {
+                console.log("kkkkk", _this.userId);
+                _this.token = res["data"]["token"];
                 _this.error = false;
                 _this.submitted = true;
             }
@@ -55,14 +57,22 @@ var AppComponent = (function () {
             }
         });
     };
-    AppComponent.prototype.profile = function () {
+    AppComponent.prototype.profile = function (values) {
+        var _this = this;
         console.log(this.profileForm);
-        console.log(this.profileForm.value);
-        /* this.api.login("2","9")
-             .subscribe(res => {
-                 console.log(res);
-             })*/
-        this.editing = false;
+        console.log(this.profileForm.value["nameE"]);
+        this.api.edite(this.profileForm.value["nameE"], this.token)
+            .subscribe(function (res) {
+            if (res["success"]) {
+                _this.userId = _this.nameE;
+                console.log(res);
+                _this.editing = false;
+                _this.errorE = false;
+            }
+            else {
+                _this.errorE = true;
+            }
+        });
     };
     return AppComponent;
 }());
