@@ -1,4 +1,7 @@
+<div class="d-flex justify-content-center w-100">
+  <div class="col-lg-5 col-md-7 col-11 ">
 <div class="container" [hidden]="submitted">
+  <div [hidden]="register" >
   <h2>Login : </h2>
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
     <div class="form-group">
@@ -28,18 +31,61 @@
 
     <div class="form-group">
       <div class="color-red mb-2"  [hidden]="!error"> data is incorrect</div>
-      <button type="submit" class="btn btn-danger" [disabled]="!loginForm.valid">Login</button>
+      <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Login</button>
+      <div  class="px-2 btn btn-success" (click)="register = true" >register</div>
     </div>
   </form>
+
+  </div>
+  <div [hidden]="!register" >
+    <h2>register : </h2>
+    <form [formGroup]="registerForm" (ngSubmit)="registerf(registerForm.value)">
+      <div class="form-group">
+        <label for="nameReg">UserName</label>
+        <input type="text" id="nameReg" placeholder="enter your name ..." name="userIdReg" class="form-control" [formControl]="userIdReg">
+        <div [hidden]="userIdReg.valid || userIdReg.untouched">
+          <div class="color-red"  [hidden]="!userIdReg.hasError('required')">
+            The Name is Required
+          </div>
+          <div class="color-red"  [hidden]="!userIdReg.hasError('minlength')">
+            The Name is min
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="passwordReg">password</label>
+        <input type="password" id="passwordReg" placeholder="enter your password ..." name="passwordReg" class="form-control" [formControl]="passwordReg">
+        <div [hidden]="passwordReg.valid || passwordReg.untouched">
+          <div class="color-red"  [hidden]="!passwordReg.hasError('required')">
+            The password is Required
+          </div>
+          <div class="color-red"  [hidden]="!passwordReg.hasError('minlength')">
+            The password is min
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">register</button>
+
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="container" [hidden]="!submitted">
   <div [hidden]="editing">
-  <h4>name : {{ name}}</h4>
+    <div *ngIf="name != null">
 
+      <h4 >name : {{ name}}</h4>
+    </div>
 
-  <button (click)="submitted = false">logOut</button>
-  <button (click)="editing = true">edit</button>
+    <div *ngIf="name == null">
+    <h4 >name : withoute name</h4>
+    </div>
+  <button class="btn btn-danger" (click)="submitted = false">logOut</button>
+  <button class="btn btn-success" (click)="editing = true">edit</button>
   </div>
   <div [hidden]="!editing">
     <h2>edit : </h2>
@@ -60,10 +106,10 @@
 
       <div class="form-group">
         <div class="color-red mb-2"  [hidden]="!errorE"> data is incorrect</div>
-        <button type="submit" class="btn btn-danger" [disabled]="!profileForm.valid">ok</button>
+        <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">ok</button>
       </div>
     </form>
   </div>
 </div>
-
-
+  </div>
+</div>

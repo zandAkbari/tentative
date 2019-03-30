@@ -30,6 +30,18 @@ var ApiService = (function () {
         })
             .map(function (res) { return res.json(); });
     };
+    ApiService.prototype.register = function (data) {
+        console.log("dataaaaaaa", data);
+        var headers = new http_1.Headers();
+        var body = new http_1.URLSearchParams();
+        body.set('userId', data["userIdReg"]);
+        body.set('password', data["passwordReg"]);
+        this.createAuthorizationHeader(headers);
+        return this.http.post('http://localhost:8000/api/v1/register', body, {
+            headers: headers
+        })
+            .map(function (res) { return res.json(); });
+    };
     ApiService.prototype.edite = function (name, token) {
         var headers = new http_1.Headers();
         var body = new http_1.URLSearchParams();

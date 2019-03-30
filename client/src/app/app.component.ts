@@ -14,6 +14,7 @@ export class AppComponent  {
     errorE:boolean;
     token:string;
     name:string;
+    register:boolean;
 
   userId = new FormControl('', [
     Validators.required,
@@ -24,6 +25,15 @@ export class AppComponent  {
     Validators.required,
         Validators.minLength(2)
   ]);
+    userIdReg = new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)
+    ]);
+
+    passwordReg = new FormControl('' , [
+        Validators.required,
+        Validators.minLength(2)
+    ]);
     nameE = new FormControl('', [
         Validators.required,
         Validators.minLength(2)
@@ -33,6 +43,11 @@ export class AppComponent  {
       pass : this.pass,
 
   });
+    registerForm: FormGroup = this.builder.group({
+        userIdReg : this.userIdReg,
+        passwordReg : this.passwordReg,
+
+    });
     profileForm: FormGroup = this.builder.group({
         nameE : this.nameE,
 
@@ -45,7 +60,7 @@ export class AppComponent  {
       this.editing = false;
       this.errorE = false;
       this.name=""
-
+      this.register=false;
   }
 
   login(values : any) {
@@ -78,6 +93,22 @@ console.log("ddddd",res["data"]["name"])
           })
 
   }
+    registerf(values : any) {
+
+        this.api.register(values)
+            .subscribe(res => {
+
+                if(res["success"]){
+                    this.register = false
+
+
+                }else{
+
+                }
+
+            })
+
+    }
     profile(values : any) {
         console.log(this.profileForm);
         console.log(this.profileForm.value["nameE"]);

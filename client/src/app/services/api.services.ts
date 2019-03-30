@@ -25,6 +25,19 @@ export class ApiService {
             .map(res => res.json())
 
     }
+    register(data : any) : Observable<boolean> {
+        console.log("dataaaaaaa",data)
+        let headers = new Headers();
+        let body = new URLSearchParams();
+        body.set('userId',data["userIdReg"]);
+        body.set('password',data["passwordReg"]);
+        this.createAuthorizationHeader(headers);
+        return this.http.post('http://localhost:8000/api/v1/register' , body, {
+            headers: headers
+        })
+            .map(res => res.json())
+
+    }
     edite(name : any,token:any) : Observable<boolean> {
 
         let headers = new Headers();

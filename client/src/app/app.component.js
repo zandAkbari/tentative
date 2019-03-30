@@ -23,6 +23,14 @@ var AppComponent = (function () {
             forms_1.Validators.required,
             forms_1.Validators.minLength(2)
         ]);
+        this.userIdReg = new forms_1.FormControl('', [
+            forms_1.Validators.required,
+            forms_1.Validators.minLength(2)
+        ]);
+        this.passwordReg = new forms_1.FormControl('', [
+            forms_1.Validators.required,
+            forms_1.Validators.minLength(2)
+        ]);
         this.nameE = new forms_1.FormControl('', [
             forms_1.Validators.required,
             forms_1.Validators.minLength(2)
@@ -30,6 +38,10 @@ var AppComponent = (function () {
         this.loginForm = this.builder.group({
             userId: this.userId,
             pass: this.pass,
+        });
+        this.registerForm = this.builder.group({
+            userIdReg: this.userIdReg,
+            passwordReg: this.passwordReg,
         });
         this.profileForm = this.builder.group({
             nameE: this.nameE,
@@ -39,6 +51,7 @@ var AppComponent = (function () {
         this.editing = false;
         this.errorE = false;
         this.name = "";
+        this.register = false;
     }
     AppComponent.prototype.login = function (values) {
         var _this = this;
@@ -64,6 +77,17 @@ var AppComponent = (function () {
             }
             else {
                 _this.error = true;
+            }
+        });
+    };
+    AppComponent.prototype.registerf = function (values) {
+        var _this = this;
+        this.api.register(values)
+            .subscribe(function (res) {
+            if (res["success"]) {
+                _this.register = false;
+            }
+            else {
             }
         });
     };
